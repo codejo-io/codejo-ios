@@ -15,7 +15,7 @@ public struct RequestData {
     let params  : [String: Any]?
     let headers : [String: String]?
 
-    init (baseUrl: String, path: String, method: HTTPMethod, params: [String: Any]? = nil, headers: [String: String]? = nil) {
+    public init (baseUrl: String, path: String, method: HTTPMethod, params: [String: Any]? = nil, headers: [String: String]? = nil) {
         self.baseUrl    = baseUrl
         self.path       = path
         self.method     = method

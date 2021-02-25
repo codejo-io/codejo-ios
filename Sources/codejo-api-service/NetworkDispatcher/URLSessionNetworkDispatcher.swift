@@ -7,11 +7,11 @@
 
 import Foundation
 
-internal struct URLSessionNetworkDispatcher: NetworkDispatcher {
+public struct URLSessionNetworkDispatcher: NetworkDispatcher {
 
     public static let instance = URLSessionNetworkDispatcher()
 
-    func parseError(_ data: Data?, statusCode: Int, params: [String: Any]?) -> NetworkError {
+    private func parseError(_ data: Data?, statusCode: Int, params: [String: Any]?) -> NetworkError {
         if let data = data {
             let result = try? (JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any])
             let errorDict = result?["errors"] as? [String: [String]]

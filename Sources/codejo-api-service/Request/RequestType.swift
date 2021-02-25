@@ -19,7 +19,7 @@ public protocol RequestType {
 
 extension RequestType {
 
-    static func perform (
+    public static func perform (
         sender: [UIButton?]? = nil,
         shouldShowIndicator: Bool = true,
         timeout: Double = 10.0,
