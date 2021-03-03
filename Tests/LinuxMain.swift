@@ -1,7 +1,7 @@
 import XCTest
 
-import codejo_api_serviceTests
+import CodejoAPIServiceTests
 
 var tests = [XCTestCaseEntry]()
-tests += codejo_api_serviceTests.allTests()
+tests += CodejoAPIServiceTests.allTests()
 XCTMain(tests)

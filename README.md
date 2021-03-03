@@ -1,3 +1,3 @@
-# codejo-api-service
+# codejo-ios
 
 A description of this package.
