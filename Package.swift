@@ -10,6 +10,21 @@ let package = Package(
         .library(
             name: "CodejoAPIService",
             targets: ["CodejoAPIService"]),
+        .library(
+            name: "CodejoExtensions",
+            targets: ["CodejoExtensions"]),
+        .library(
+            name: "CodejoImageCache",
+            targets: ["CodejoImageCache"]),
+        .library(
+            name: "CodejoKeyboardLayoutConstraint",
+            targets: ["CodejoKeyboardLayoutConstraint"]),
+        .library(
+            name: "CodejoLocalStoreService",
+            targets: ["CodejoLocalStoreService"]),
+        .library(
+            name: "CodejoUIKitExtensions",
+            targets: ["CodejoUIKitExtensions"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -20,6 +35,21 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "CodejoAPIService",
+            dependencies: []),
+        .target(
+            name: "CodejoExtensions",
+            dependencies: []),
+        .target(
+            name: "CodejoImageCache",
+            dependencies: []),
+        .target(
+            name: "CodejoKeyboardLayoutConstraint",
+            dependencies: []),
+        .target(
+            name: "CodejoLocalStoreService",
+            dependencies: []),
+        .target(
+            name: "CodejoUIKitExtensions",
             dependencies: []),
         .testTarget(
             name: "CodejoAPIServiceTests",
