@@ -1,6 +1,6 @@
 //
 //  UIFont.swift
-//  vshred-ios
+//  Codejo
 //
 //  Created by Cole James on 10/3/19.
 //  Copyright © 2019 V Shred LLC. All rights reserved.

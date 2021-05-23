@@ -1,6 +1,6 @@
 //
 //  DispatchQueue.swift
-//  vshred-ios
+//  Codejo
 //
 //  Created by Cole James on 4/17/19.
 //  Copyright © 2019 V Shred LLC. All rights reserved.

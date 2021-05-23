@@ -1,6 +1,6 @@
 //
 //  RequestType.swift
-//  Talk About It
+//  Codejo
 //
 //  Created by Cole James on 2/24/21.
 //
@@ -20,9 +20,6 @@ public protocol RequestType {
 extension RequestType {
 
     public static func perform (
-        sender: [UIButton?]? = nil,
-        shouldShowIndicator: Bool = true,
-        timeout: Double = 10.0,
         request: RequestData,
         dispatcher: NetworkDispatcher = URLSessionNetworkDispatcher.instance,
         onSuccess: @escaping (ResponseType) -> Void,

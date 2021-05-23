@@ -1,6 +1,6 @@
 //
 //  Dictionary.swift
-//  vshred-ios
+//  Codejo
 //
 //  Created by Brandon T on 5/10/19.
 //  Copyright © 2019 V Shred LLC. All rights reserved.

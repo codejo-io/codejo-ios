@@ -1,6 +1,6 @@
 //
 //  LocalizationExtension.swift
-//  vshred-ios
+//  Codejo
 //
 //  Created by Brandon T on 4/26/19.
 //  Copyright © 2019 V Shred LLC. All rights reserved.

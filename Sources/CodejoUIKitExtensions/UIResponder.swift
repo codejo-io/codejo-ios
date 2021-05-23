@@ -1,6 +1,6 @@
 //
 //  UIResponder.swift
-//  vshred-ios
+//  Codejo
 //
 //  Created by Cole James on 4/5/20.
 //  Copyright © 2020 V Shred LLC. All rights reserved.

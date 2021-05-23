@@ -1,6 +1,6 @@
 //
 //  Character.swift
-//  vshred-ios
+//  Codejo
 //
 //  Created by Cole James on 2/19/20.
 //  Copyright © 2020 V Shred LLC. All rights reserved.
