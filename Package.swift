@@ -25,6 +25,9 @@ let package = Package(
         .library(
             name: "CodejoUIKitExtensions",
             targets: ["CodejoUIKitExtensions"]),
+        .library(
+            name: "CodejoUISupport",
+            targets: ["CodejoUISupport"])
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -50,6 +53,9 @@ let package = Package(
             dependencies: []),
         .target(
             name: "CodejoUIKitExtensions",
+            dependencies: []),
+        .target(
+            name: "CodejoUISupport",
             dependencies: []),
         .testTarget(
             name: "CodejoAPIServiceTests",
