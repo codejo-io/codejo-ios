@@ -75,6 +75,8 @@ public class PickerViewTextField: UITextField, UIPickerViewDelegate, UIPickerVie
             pickerView.selectRow(row + 1, inComponent: component, animated: true)
             text = options[row + 1].text
         }
+
+        sendActions(for: .editingChanged)
     }
 
 }
