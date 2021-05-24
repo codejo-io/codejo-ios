@@ -71,8 +71,9 @@ public class PickerViewTextField: UITextField, UIPickerViewDelegate, UIPickerVie
     public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if options[row].enabled {
             text = options[row].text
-        } else {
+        } else if row + 1 < options.count {
             pickerView.selectRow(row + 1, inComponent: component, animated: true)
+            text = options[row + 1].text
         }
     }
 
