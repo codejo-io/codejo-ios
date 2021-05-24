@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct PickerViewTextFieldOption {
+public struct PickerViewTextFieldOption {
 
     let text: String
     let enabled: Bool

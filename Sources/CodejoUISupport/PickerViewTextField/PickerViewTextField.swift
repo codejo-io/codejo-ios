@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PickerViewTextField: UITextField, UIPickerViewDelegate, UIPickerViewDataSource {
+public class PickerViewTextField: UITextField, UIPickerViewDelegate, UIPickerViewDataSource {
 
     var pickerView = UIPickerView()
 
