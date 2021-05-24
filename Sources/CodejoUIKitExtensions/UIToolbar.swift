@@ -8,6 +8,7 @@
 
 import UIKit.UIToolbar
 
+#if os(iOS)
 public extension UIToolbar {
 
     static func simpleToolbar(doneButton: UIBarButtonItem) -> UIToolbar {
@@ -28,3 +29,4 @@ public extension UIToolbar {
     }
 
 }
+#endif

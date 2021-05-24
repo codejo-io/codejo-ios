@@ -8,6 +8,7 @@
 
 import UIKit
 
+#if os(iOS)
 @available(iOS 10.0, *)
 public extension UIImpactFeedbackGenerator {
 
@@ -17,3 +18,4 @@ public extension UIImpactFeedbackGenerator {
     }
 
 }
+#endif
