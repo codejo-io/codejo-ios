@@ -9,9 +9,13 @@ import UIKit
 
 public class PickerViewTextField: UITextField, UIPickerViewDelegate, UIPickerViewDataSource {
 
-    var pickerView = UIPickerView()
+    private var pickerView = UIPickerView()
 
-    var options: [PickerViewTextFieldOption] = []
+    public var options: [PickerViewTextFieldOption] = [] {
+        didSet {
+            pickerView.reloadAllComponents()
+        }
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -52,19 +56,19 @@ public class PickerViewTextField: UITextField, UIPickerViewDelegate, UIPickerVie
         resignFirstResponder()
     }
 
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+    public func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
 
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return options.count
     }
 
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    public func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return options[row].text
     }
 
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if options[row].enabled {
             text = options[row].text
         } else {
