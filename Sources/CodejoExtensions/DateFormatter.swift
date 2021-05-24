@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension DateFormatter {
+public extension DateFormatter {
 
     static func getReadableDate(timeStamp: String, format: String = "MMMM dd, yyyy", withTimeStamp: Bool = true, timeZone: String? = "UTC") -> String? {
         let formatter = DateFormatter()

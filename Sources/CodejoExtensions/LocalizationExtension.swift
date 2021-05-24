@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension UILabel {
+public extension UILabel {
 
     @IBInspectable var localizedKey: String? {
         get {
@@ -23,7 +23,7 @@ extension UILabel {
 
 }
 
-@IBDesignable extension UIButton {
+@IBDesignable public extension UIButton {
 
     @IBInspectable var localizedKey: String {
         get {
@@ -36,7 +36,7 @@ extension UILabel {
 
 }
 
-extension UITextField {
+public extension UITextField {
 
     @IBInspectable var placeholderLocalizedKey: String? {
         get {
@@ -51,7 +51,7 @@ extension UITextField {
 
 }
 
-extension UINavigationItem {
+public extension UINavigationItem {
 
     @IBInspectable var localizedKey: String {
         get {
@@ -64,7 +64,7 @@ extension UINavigationItem {
 
 }
 
-extension UIBarItem {
+public extension UIBarItem {
 
     @IBInspectable var localizedKey: String {
         get {

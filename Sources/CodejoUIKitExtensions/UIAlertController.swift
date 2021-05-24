@@ -8,7 +8,7 @@
 
 import UIKit.UIAlertController
 
-extension UIAlertController {
+public extension UIAlertController {
 
     func addActions(_ actions: [UIAlertAction]) {
         for action in actions {

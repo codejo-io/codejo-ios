@@ -8,7 +8,7 @@
 
 import UIKit.UIViewController
 
-extension UIViewController {
+public extension UIViewController {
 
     func displayTempAlert(title:String, message: String, style: TempAlertStyle) {
 

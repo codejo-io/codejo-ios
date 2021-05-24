@@ -8,7 +8,7 @@
 
 import UIKit.UIButton
 
-extension UIButton {
+public extension UIButton {
 
     @IBInspectable var adjustsFontSizeToWidth: Bool {
         get {

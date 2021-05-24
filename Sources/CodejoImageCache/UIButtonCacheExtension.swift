@@ -7,7 +7,7 @@
 
 import UIKit.UIButton
 
-extension UIButton {
+public extension UIButton {
 
     func cacheImage(url: String) {
         let image = ImageCache.cacheImage(url: url) { (imageUrl, image) in

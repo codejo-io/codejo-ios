@@ -8,7 +8,7 @@
 
 import UIKit.UILabel
 
-extension UILabel {
+public extension UILabel {
 
     @IBInspectable var strikeThrough: Bool {
         get {

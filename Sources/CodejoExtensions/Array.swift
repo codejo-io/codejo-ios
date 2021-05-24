@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension Array {
+public extension Array {
 
     func first(_ numberOfItems: Int) -> Self {
         let length = self.count >= numberOfItems ? numberOfItems - 1 : self.count - 1

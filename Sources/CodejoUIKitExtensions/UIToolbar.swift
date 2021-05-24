@@ -8,7 +8,7 @@
 
 import UIKit.UIToolbar
 
-extension UIToolbar {
+public extension UIToolbar {
 
     static func simpleToolbar(doneButton: UIBarButtonItem) -> UIToolbar {
         let barAccessory = UIToolbar()

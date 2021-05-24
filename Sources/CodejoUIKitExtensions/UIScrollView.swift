@@ -8,7 +8,7 @@
 
 import UIKit.UIScrollView
 
-extension UIScrollView {
+public extension UIScrollView {
 
     func displayTempAlert(title:String, message: String, style: TempAlertStyle) {
         let imageViewHeight: CGFloat = 30.0

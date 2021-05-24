@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension URL {
+public extension URL {
 
     func getQueryComponent(with key: String) -> String? {
         let components = URLComponents(url: self, resolvingAgainstBaseURL: true)

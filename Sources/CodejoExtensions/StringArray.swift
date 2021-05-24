@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension Array where Iterator.Element == (String) {
+public extension Array where Iterator.Element == (String) {
 
     func commaDelimited(prependString: String? = nil) -> String {
         var string = ""

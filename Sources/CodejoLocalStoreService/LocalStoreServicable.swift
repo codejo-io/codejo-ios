@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol LocalStoreServicable {
+internal protocol LocalStoreServicable {
 
     func get<T: Codable>(type: T.Type, key: String, errorHandler: ((_ error: Error) -> Void)?) -> T?
 

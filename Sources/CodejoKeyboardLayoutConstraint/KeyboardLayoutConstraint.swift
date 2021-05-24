@@ -7,7 +7,7 @@
 
 import UIKit
 
-class KeyboardLayoutConstraint: NSLayoutConstraint {
+public class KeyboardLayoutConstraint: NSLayoutConstraint {
 
     private var offset : CGFloat = 0
     private var keyboardVisibleHeight : CGFloat = 0
@@ -51,7 +51,7 @@ class KeyboardLayoutConstraint: NSLayoutConstraint {
         }, completion: nil)
     }
 
-    func parseKeyboardAnimation(from userInfo: [AnyHashable: Any]) -> KeyboardAnimationOptions? {
+    private func parseKeyboardAnimation(from userInfo: [AnyHashable: Any]) -> KeyboardAnimationOptions? {
         if let frameValue = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let frame = frameValue.cgRectValue
 
@@ -68,14 +68,14 @@ class KeyboardLayoutConstraint: NSLayoutConstraint {
         return nil
     }
 
-    func updateShowConstant() {
+    private func updateShowConstant() {
         let parentView = self.firstItem as? UIView
         let distanceToTop = parentView?.convert(parentView!.bounds, to: UIApplication.shared.keyWindow).origin.y ?? 0
         let distanceToBottom = UIScreen.main.bounds.height - distanceToTop
         self.constant = keyboardVisibleHeight - distanceToBottom + 20 // add 20 to add a little margin above the keyboard
     }
 
-    func updateDissmissConstant() {
+    private func updateDissmissConstant() {
         self.constant = offset + keyboardVisibleHeight
     }
 

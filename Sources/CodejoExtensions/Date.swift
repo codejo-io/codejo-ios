@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension Date {
+public extension Date {
 
     static var month: String {
         let dateFormatter = DateFormatter()

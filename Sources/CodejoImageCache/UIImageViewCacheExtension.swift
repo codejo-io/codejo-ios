@@ -7,7 +7,7 @@
 
 import UIKit.UIImageView
 
-extension UIImageView {
+public extension UIImageView {
 
     func cacheImage(url: String?, placeholder: String? = nil) {
         if url == "avatar-upload" || url == "profile" {

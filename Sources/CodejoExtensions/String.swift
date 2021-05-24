@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension String {
+public extension String {
 
     func capitalizingFirstLetter() -> String {
         return prefix(1).capitalized + dropFirst()
@@ -119,24 +119,7 @@ extension String {
         let charSet = Set("abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLKMNOPQRSTUVWXYZ1234567890-")
         return self.filter {charSet.contains($0) }
     }
-
-    func replacingUTMTags(prependCampaign: String? = nil, storedCampaigns: [String]?) -> String {
-        var mutableString = self
-
-        if mutableString.contains("utm_medium=&") {
-            mutableString = mutableString.replacingOccurrences(of: "utm_medium=&", with: "utm_medium=ios&")
-        } else if mutableString.suffix(11) == "utm_medium=" {
-            mutableString = mutableString.replacingOccurrences(of: "utm_medium=", with: "utm_medium=ios")
-        }
-
-        if mutableString.contains("utm_campaign=&") {
-            mutableString = mutableString.replacingOccurrences(of: "utm_campaign=&", with: "utm_campaign=\(storedCampaigns?.commaDelimited(prependString: prependCampaign) ?? "")&")
-        } else if mutableString.suffix(13) == "utm_campaign=" {
-            mutableString = mutableString.replacingOccurrences(of: "utm_campaign=", with: "utm_campaign=\(storedCampaigns?.commaDelimited(prependString: prependCampaign) ?? ""))")
-        }
-
-        return mutableString
-    }
+    
 }
 
 extension String {
@@ -161,28 +144,6 @@ extension String {
 
     func formattedNewLines() -> String {
         return self.replacingOccurrences(of: "\\n", with: "\n")
-    }
-
-    func autoplay(_ value: Bool = true) -> String {
-        var newStr = self
-        if !self.contains("?") {
-            newStr.append("?")
-        } else {
-            newStr.append("&")
-        }
-        newStr.append("autoplay=\(value ? 1 : 0)")
-        return newStr
-    }
-
-    func playinline(_ value: Bool = true) -> String {
-        var newStr = self
-        if !self.contains("?") {
-            newStr.append("?")
-        } else {
-            newStr.append("&")
-        }
-        newStr.append("playsinline=\(value ? 1 : 0)")
-        return newStr
     }
 
     func emailEncoding() -> String? {

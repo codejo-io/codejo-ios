@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum TempAlertStyle {
+public enum TempAlertStyle {
 
     case success
     case warning
@@ -15,7 +15,7 @@ enum TempAlertStyle {
 
 }
 
-extension TempAlertStyle {
+public extension TempAlertStyle {
 
     var color: UIColor {
         switch self {

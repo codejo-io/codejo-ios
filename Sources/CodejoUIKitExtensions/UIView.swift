@@ -8,7 +8,7 @@
 
 import UIKit.UIView
 
-extension UIView {
+public extension UIView {
 
     @IBInspectable var cornerRadius: CGFloat {
         get {
@@ -86,7 +86,7 @@ extension UIView {
 }
 
 // Used to help easily determine safe area constraint anchors
-extension UIView {
+public extension UIView {
     
     var safeTopAnchor: NSLayoutYAxisAnchor {
         if #available(iOS 11.0, *) {
@@ -132,7 +132,7 @@ extension UIView {
 
 }
 
-extension UIView {
+public extension UIView {
 
     func rotate(angle: CGFloat) {
         let radians = angle / 180.0 * CGFloat.pi

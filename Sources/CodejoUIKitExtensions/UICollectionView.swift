@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension UICollectionView {
+public extension UICollectionView {
 
     var closestCellIndex: Int {
         var desiredScrollViewXPos = Float(self.contentOffset.x)

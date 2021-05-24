@@ -8,7 +8,7 @@
 
 import UIKit.UITextField
 
-extension UITextField {
+public extension UITextField {
 
     func setBottomBorder() {
         self.borderStyle = .none

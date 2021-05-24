@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension UIFont {
+public extension UIFont {
 
     func with(_ traits: UIFontDescriptor.SymbolicTraits...) -> UIFont {
         guard let descriptor = self.fontDescriptor.withSymbolicTraits(UIFontDescriptor.SymbolicTraits(traits).union(self.fontDescriptor.symbolicTraits)) else {
@@ -24,4 +24,4 @@ extension UIFont {
         return UIFont(descriptor: descriptor, size: 0)
     }
 
-} // extension
+}

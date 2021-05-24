@@ -7,10 +7,10 @@
 
 import Foundation
 
-struct AlertData {
+public struct AlertData {
 
-    let title               : String?
-    let description         : String?
-    let cancelButtonText    : String?
+    public let title               : String?
+    public let description         : String?
+    public let cancelButtonText    : String?
     
 }

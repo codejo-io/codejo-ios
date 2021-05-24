@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ImageCache {
+public class ImageCache {
 
     static let shared = NSCache<AnyObject, AnyObject>()
 

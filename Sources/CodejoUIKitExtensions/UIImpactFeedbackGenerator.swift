@@ -9,7 +9,7 @@
 import UIKit
 
 @available(iOS 10.0, *)
-extension UIImpactFeedbackGenerator {
+public extension UIImpactFeedbackGenerator {
 
     static func impact(_ style: UIImpactFeedbackGenerator.FeedbackStyle) {
         let generator = UIImpactFeedbackGenerator(style: style)

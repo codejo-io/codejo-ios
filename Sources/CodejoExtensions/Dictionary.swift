@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension Dictionary {
+public extension Dictionary {
     // Prefer the values of the L-value
     mutating func l_merge(dict: [Key: Value]){
         for (key, value) in dict where self[key] == nil {

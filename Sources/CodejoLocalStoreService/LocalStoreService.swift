@@ -7,7 +7,7 @@
 
 import Foundation
 
-class LocalStoreService: LocalStoreServicable {
+public class LocalStoreService: LocalStoreServicable {
 
     private var valueMap = [String: Codable]()
 

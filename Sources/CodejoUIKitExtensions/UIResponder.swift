@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension UIResponder {
+public extension UIResponder {
 
     var parentViewController: UIViewController? {
         return next as? UIViewController ?? next?.parentViewController
