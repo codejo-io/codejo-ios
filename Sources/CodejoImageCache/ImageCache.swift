@@ -9,15 +9,15 @@ import UIKit
 
 public class ImageCache {
 
-    static let shared = NSCache<AnyObject, AnyObject>()
+    public static let shared = NSCache<AnyObject, AnyObject>()
 
-    static let instance = ImageCache()
+    public static let instance = ImageCache()
 
-    var currentRequests = [String]()
+    private var currentRequests = [String]()
 
-    var pendingRequestCallbacks: [String: [((_ url: String, _ image: UIImage?) -> Void)]] = [:]
+    private var pendingRequestCallbacks: [String: [((_ url: String, _ image: UIImage?) -> Void)]] = [:]
 
-    static func cacheImage(url: String, _ callback: ((_ url: String, _ image: UIImage?) -> Void)? = nil) -> UIImage? {
+    public static func cacheImage(url: String, _ callback: ((_ url: String, _ image: UIImage?) -> Void)? = nil) -> UIImage? {
         if let url = URL(string: url) {
             if let imageFromCache = ImageCache.shared.object(forKey: url.absoluteString as AnyObject) as? UIImage {
                 return imageFromCache
@@ -42,10 +42,11 @@ public class ImageCache {
                             DispatchQueue.main.async {
                                 callback?(url.absoluteString, image)
                                 self.instance.currentRequests.removeAll { urlString -> Bool in
-                                        return urlString == url.absoluteString
-                                    }
+                                    return urlString == url.absoluteString
                                 }
-                            })
+                            }
+                        }
+                    )
                 } else {
                     DispatchQueue.main.async {
                         URLSession.shared.dataTask(with: url) { (data, response, _ error) in
@@ -53,14 +54,11 @@ public class ImageCache {
                                 if let response = data {
                                     if let imageToCache = UIImage(data: response) {
                                         ImageCache.shared.setObject(imageToCache, forKey: url.absoluteString as AnyObject)
-
                                         self.instance.executeCallbacks(url: url.absoluteString, image: imageToCache)
                                     } else {
                                         self.instance.executeCallbacks(url: url.absoluteString, image: nil)
                                     }
-                                    self.instance.currentRequests.removeAll { urlString -> Bool in
-                                        return urlString == url.absoluteString
-                                    }
+                                    self.instance.currentRequests.removeAll { $0 == url.absoluteString }
                                 }
                             }
                         }.resume()
@@ -72,7 +70,7 @@ public class ImageCache {
         return nil
     }
 
-    static func background(delay: Double = 0.0, background: (() -> Void)? = nil, completion: (() -> Void)? = nil) {
+    private static func background(delay: Double = 0.0, background: (() -> Void)? = nil, completion: (() -> Void)? = nil) {
         DispatchQueue.global(qos: .background).async {
             background?()
             if let completion = completion {
@@ -93,17 +91,15 @@ public class ImageCache {
         }
     }
 
-    func executeCallbacks(url: String, image: UIImage?) {
-        let length = (self.pendingRequestCallbacks[url]?.count ?? 1) - 1
-
-        for n in 0...length {
-            self.pendingRequestCallbacks[url]?[n](url, image)
-        }
+    private func executeCallbacks(url: String, image: UIImage?) {
+        self.pendingRequestCallbacks[url]?.forEach({ callback in
+            callback(url, image)
+        })
 
         self.pendingRequestCallbacks[url] = nil
     }
 
-    static func cacheImage(url: String, image: UIImage?) -> UIImage? {
+    public static func cacheImage(url: String, image: UIImage?) -> UIImage? {
         if let imageFromCache = ImageCache.shared.object(forKey: url as AnyObject) as? UIImage {
             return imageFromCache
         } else {

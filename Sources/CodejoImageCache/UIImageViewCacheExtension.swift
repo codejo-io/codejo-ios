@@ -10,11 +10,6 @@ import UIKit.UIImageView
 public extension UIImageView {
 
     func cacheImage(url: String?, placeholder: String? = nil) {
-        if url == "avatar-upload" || url == "profile" {
-            image = UIImage(named: url!)
-            return
-        }
-
         guard let url = url else { return }
 
         if let placeholder = placeholder {
