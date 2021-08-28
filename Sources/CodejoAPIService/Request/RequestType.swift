@@ -38,19 +38,19 @@ extension RequestType {
                         }
                     } catch let DecodingError.dataCorrupted(context) {
                         let message = "Data corrupted: \(context.debugDescription). codingPath: \(context.codingPath)"
-                        let error = NetworkError(statusCode: 701, title: context.debugDescription, description: "There was an issue loading this data. Error code: 701")
+                        let error = NetworkError(statusCode: 701, title: context.debugDescription, description: "There was an issue loading this data. Error code: 701", params: ["dataCorrupted": context.debugDescription])
                         handleError(request: request, responseData: responseData, errorMessage: message, error: error, onError: onError)
                     } catch let DecodingError.keyNotFound(key, context) {
                         let message = "Key '\(key)' not found: \(context.debugDescription). codingPath: \(context.codingPath)."
-                        let error = NetworkError(statusCode: 702, title: context.debugDescription, description: "There was an issue loading this data. Error code: 702")
+                        let error = NetworkError(statusCode: 702, title: context.debugDescription, description: "There was an issue loading this data. Error code: 702", params: ["keyNotFound": context.debugDescription])
                         handleError(request: request, responseData: responseData, errorMessage: message, error: error, onError: onError)
                     } catch let DecodingError.valueNotFound(value, context) {
                         let message = "Value '\(value)' not found: \(context.debugDescription). codingPath: \(context.codingPath)."
-                        let error = NetworkError(statusCode: 703, title: context.debugDescription, description: "There was an issue loading this data. Error code: 703")
+                        let error = NetworkError(statusCode: 703, title: context.debugDescription, description: "There was an issue loading this data. Error code: 703", params: ["valueNotFound": context.debugDescription])
                         handleError(request: request, responseData: responseData, errorMessage: message, error: error, onError: onError)
                     } catch let DecodingError.typeMismatch(type, context)  {
                         let message = "Type '\(type)' mismatch: \(context.debugDescription). codingPath: \(context.codingPath)."
-                        let error = NetworkError(statusCode: 704, title: context.debugDescription, description: "There was an issue loading this data. Error code: 704")
+                        let error = NetworkError(statusCode: 704, title: context.debugDescription, description: "There was an issue loading this data. Error code: 704", params: ["typeMismatch": context.debugDescription])
                         handleError(request: request, responseData: responseData, errorMessage: message, error: error, onError: onError)
                     } catch {
                         handleError(request: request, responseData: responseData, errorMessage: error.localizedDescription, error: error, onError: onError)
@@ -79,20 +79,6 @@ extension RequestType {
         onError: @escaping (NetworkError) -> Void
     ) {
         DispatchQueue.main.async {
-            LoadingIndicatorObserver.dismissIndicator()
-
-            var params: [String: Any] = ["url": request.baseUrl]
-
-            if let json = String(data: responseData, encoding: .utf8) {
-                params["body"] = [ "response": json ]
-            } else if let result = try? (JSONSerialization.jsonObject(with: responseData, options: .allowFragments) as? [String: Any]) {
-                params["body"] = [ "response": result ]
-            } else {
-                params["body"] = [ "error": "Unable to parse response from API." ]
-            }
-
-            VSRouter.instance.loggerService.error(error: NetworkError(statusCode: nil, title: "", description: errorMessage, params: params))
-
             onError(NetworkError(error: error))
         }
     }
