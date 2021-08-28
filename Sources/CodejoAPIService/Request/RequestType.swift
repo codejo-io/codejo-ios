@@ -32,25 +32,29 @@ extension RequestType {
                 onSuccess: { (responseData: Data) in
                     do {
                         let jsonDecoder = JSONDecoder()
-                        jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
                         let result = try jsonDecoder.decode(ResponseType.self, from: responseData)
                         DispatchQueue.main.async {
+                            LoadingIndicatorObserver.dismissIndicator()
                             onSuccess(result)
                         }
-                    } catch let error {
-                        DispatchQueue.main.async {
-                            var params: [String: Any] = ["url": request.baseUrl]
-
-                            if let json = String(data: responseData, encoding: .utf8) {
-                                params["body"] = [ "response": json ]
-                            } else if let result = try? (JSONSerialization.jsonObject(with: responseData, options: .allowFragments) as? [String: Any]) {
-                                params["body"] = [ "response": result ]
-                            } else {
-                                params["body"] = [ "error": "Unable to parse response from API." ]
-                            }
-
-                            onError(NetworkError(error: error))
-                        }
+                    } catch let DecodingError.dataCorrupted(context) {
+                        let message = "Data corrupted: \(context.debugDescription). codingPath: \(context.codingPath)"
+                        let error = NetworkError(statusCode: 701, title: context.debugDescription, description: "There was an issue loading this data. Error code: 701")
+                        handleError(request: request, responseData: responseData, errorMessage: message, error: error, onError: onError)
+                    } catch let DecodingError.keyNotFound(key, context) {
+                        let message = "Key '\(key)' not found: \(context.debugDescription). codingPath: \(context.codingPath)."
+                        let error = NetworkError(statusCode: 702, title: context.debugDescription, description: "There was an issue loading this data. Error code: 702")
+                        handleError(request: request, responseData: responseData, errorMessage: message, error: error, onError: onError)
+                    } catch let DecodingError.valueNotFound(value, context) {
+                        let message = "Value '\(value)' not found: \(context.debugDescription). codingPath: \(context.codingPath)."
+                        let error = NetworkError(statusCode: 703, title: context.debugDescription, description: "There was an issue loading this data. Error code: 703")
+                        handleError(request: request, responseData: responseData, errorMessage: message, error: error, onError: onError)
+                    } catch let DecodingError.typeMismatch(type, context)  {
+                        let message = "Type '\(type)' mismatch: \(context.debugDescription). codingPath: \(context.codingPath)."
+                        let error = NetworkError(statusCode: 704, title: context.debugDescription, description: "There was an issue loading this data. Error code: 704")
+                        handleError(request: request, responseData: responseData, errorMessage: message, error: error, onError: onError)
+                    } catch {
+                        handleError(request: request, responseData: responseData, errorMessage: error.localizedDescription, error: error, onError: onError)
                     }
                 },
                 onError: { (error: NetworkError) in
