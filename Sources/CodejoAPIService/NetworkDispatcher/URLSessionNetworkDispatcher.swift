@@ -57,6 +57,8 @@ public struct URLSessionNetworkDispatcher: NetworkDispatcher {
 
         urlRequest.httpMethod = request.method.rawValue
 
+        urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
+
         if let params = request.params {
             if params["image"] != nil {
                 var body = Data()
@@ -76,6 +78,8 @@ public struct URLSessionNetworkDispatcher: NetworkDispatcher {
             } else {
                 urlRequest.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
             }
+        } else {
+            urlRequest.setValue("application/json; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
         }
 
         return urlRequest
