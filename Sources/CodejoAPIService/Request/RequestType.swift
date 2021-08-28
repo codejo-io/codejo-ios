@@ -34,7 +34,6 @@ extension RequestType {
                         let jsonDecoder = JSONDecoder()
                         let result = try jsonDecoder.decode(ResponseType.self, from: responseData)
                         DispatchQueue.main.async {
-                            LoadingIndicatorObserver.dismissIndicator()
                             onSuccess(result)
                         }
                     } catch let DecodingError.dataCorrupted(context) {
@@ -69,6 +68,32 @@ extension RequestType {
             )
         } else {
             onError(NetworkError(statusCode: 503, title: "Error", description: "No internet connection..."))
+        }
+    }
+
+    static func handleError(
+        request: RequestData,
+        responseData: Data,
+        errorMessage: String,
+        error: Error,
+        onError: @escaping (NetworkError) -> Void
+    ) {
+        DispatchQueue.main.async {
+            LoadingIndicatorObserver.dismissIndicator()
+
+            var params: [String: Any] = ["url": request.baseUrl]
+
+            if let json = String(data: responseData, encoding: .utf8) {
+                params["body"] = [ "response": json ]
+            } else if let result = try? (JSONSerialization.jsonObject(with: responseData, options: .allowFragments) as? [String: Any]) {
+                params["body"] = [ "response": result ]
+            } else {
+                params["body"] = [ "error": "Unable to parse response from API." ]
+            }
+
+            VSRouter.instance.loggerService.error(error: NetworkError(statusCode: nil, title: "", description: errorMessage, params: params))
+
+            onError(NetworkError(error: error))
         }
     }
 
