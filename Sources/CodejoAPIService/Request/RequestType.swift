@@ -32,6 +32,7 @@ extension RequestType {
                 onSuccess: { (responseData: Data) in
                     do {
                         let jsonDecoder = JSONDecoder()
+                        jsonDecoder.keyDecodingStrategy = .convertFromSnakeCase
                         let result = try jsonDecoder.decode(ResponseType.self, from: responseData)
                         DispatchQueue.main.async {
                             onSuccess(result)
