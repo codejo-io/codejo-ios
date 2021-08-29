@@ -76,10 +76,9 @@ public struct URLSessionNetworkDispatcher: NetworkDispatcher {
 
                 urlRequest.httpBody = body
             } else {
+                urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
                 urlRequest.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
             }
-        } else {
-            urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
         }
 
         return urlRequest
