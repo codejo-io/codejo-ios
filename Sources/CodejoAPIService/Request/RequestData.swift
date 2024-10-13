@@ -12,7 +12,7 @@ public struct RequestData {
     let baseUrl : String
     let path    : String
     let method  : HTTPMethod
-    let params  : [String: Any]?
+    let params  : Any?
     let headers : [String: String]?
 
     public init (baseUrl: String, path: String, method: HTTPMethod, params: [String: Any]? = nil, headers: [String: String]? = nil) {

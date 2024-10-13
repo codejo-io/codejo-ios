@@ -11,7 +11,7 @@ public struct URLSessionNetworkDispatcher: NetworkDispatcher {
 
     public static let instance = URLSessionNetworkDispatcher()
 
-    private func parseError(_ data: Data?, statusCode: Int, params: [String: Any]?) -> NetworkError {
+    private func parseError(_ data: Data?, statusCode: Int, params: Any?) -> NetworkError {
         if let data = data {
             let result = try? (JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any])
             let errorDict = result?["errors"] as? [String: [String]]
@@ -59,7 +59,7 @@ public struct URLSessionNetworkDispatcher: NetworkDispatcher {
 
         urlRequest.setValue("application/json", forHTTPHeaderField: "Accept")
 
-        if let params = request.params {
+        if let params = request.params as? [String: Any] {
             if params["image"] != nil {
                 var body = Data()
 
