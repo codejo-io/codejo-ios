@@ -9,7 +9,11 @@ import Foundation
 
 public class LocalStoreService: LocalStoreServicable {
 
-    private var valueMap = [String: Codable]()
+    private var valueMap: [String: Codable]
+
+    public init() {
+        self.valueMap = [String: Codable]()
+    }
 
     public func setItem<T: Codable>(item: T?, key: String, errorHandler: ((_ error: Error) -> Void)?) {
         do {
