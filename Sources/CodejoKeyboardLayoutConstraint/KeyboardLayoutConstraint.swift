@@ -72,7 +72,7 @@ public class KeyboardLayoutConstraint: NSLayoutConstraint {
         let parentView = self.firstItem as? UIView
         let distanceToTop = parentView?.convert(parentView!.bounds, to: UIApplication.shared.keyWindow).origin.y ?? 0
         let distanceToBottom = UIScreen.main.bounds.height - distanceToTop
-        self.constant = -(keyboardVisibleHeight - distanceToBottom + 20) // add 20 to add a little margin above the keyboard
+        self.constant = -keyboardVisibleHeight - distanceToBottom + 20 // add 20 to add a little margin above the keyboard
     }
 
     private func updateDissmissConstant() {
