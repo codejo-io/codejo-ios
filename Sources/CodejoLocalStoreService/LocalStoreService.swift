@@ -11,7 +11,7 @@ public class LocalStoreService: LocalStoreServicable {
 
     private var valueMap = [String: Codable]()
 
-    func setItem<T: Codable>(item: T?, key: String, errorHandler: ((_ error: Error) -> Void)?) {
+    public func setItem<T: Codable>(item: T?, key: String, errorHandler: ((_ error: Error) -> Void)?) {
         do {
             UserDefaults.standard.set(try PropertyListEncoder().encode(item), forKey: key)
             valueMap[key] = item
@@ -20,7 +20,7 @@ public class LocalStoreService: LocalStoreServicable {
         }
     }
 
-    func get<T: Codable>(type: T.Type, key: String, errorHandler: ((_ error: Error) -> Void)?) -> T? {
+    public func get<T: Codable>(type: T.Type, key: String, errorHandler: ((_ error: Error) -> Void)?) -> T? {
         if let item = valueMap[key] as? T {
             return item
         } else {
@@ -38,7 +38,7 @@ public class LocalStoreService: LocalStoreServicable {
         return nil
     }
 
-    func deleteItem(key: String) {
+    public func deleteItem(key: String) {
         UserDefaults.standard.removeObject(forKey: key)
         valueMap[key] = nil
     }
